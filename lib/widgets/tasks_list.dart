@@ -27,11 +27,29 @@ class Listtilewidget extends StatelessWidget {
           '$title',
           style: TextStyle(fontSize: 20),
         ),
-        trailing: Checkbox(
-          value: false,
-          onChanged: (_) {},
-        ),
+        trailing: TaskCheckBox(),
       ),
+    );
+  }
+}
+
+class TaskCheckBox extends StatefulWidget {
+  @override
+  _TaskCheckBoxState createState() => _TaskCheckBoxState();
+}
+
+class _TaskCheckBoxState extends State<TaskCheckBox> {
+  bool ischecked = false;
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+      value: ischecked,
+      activeColor: Colors.lightBlueAccent,
+      onChanged: (newValue) {
+        setState(() {
+          ischecked = newValue;
+        });
+      },
     );
   }
 }

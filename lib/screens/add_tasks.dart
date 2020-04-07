@@ -24,11 +24,11 @@ class AddTasks extends StatelessWidget {
                 'Add Task',
                 style: TextStyle(
                   color: Colors.lightBlueAccent,
-                  fontSize: 50,
+                  fontSize: 40,
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               TextField(
                 autofocus: true,
