@@ -20,14 +20,17 @@ class Listtilewidget extends StatelessWidget {
   const Listtilewidget({this.title});
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        '$title',
-        style: TextStyle(fontSize: 20),
-      ),
-      trailing: Checkbox(
-        value: false,
-        onChanged: (_) {},
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 3),
+      child: ListTile(
+        title: Text(
+          '$title',
+          style: TextStyle(fontSize: 20),
+        ),
+        trailing: Checkbox(
+          value: false,
+          onChanged: (_) {},
+        ),
       ),
     );
   }
