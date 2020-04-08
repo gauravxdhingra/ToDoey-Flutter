@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/taks_data.dart';
 
 class AddTasks extends StatelessWidget {
-  String newTaskTitle;
-  final Function addTaskCallback;
-
-  AddTasks(this.addTaskCallback);
   @override
   Widget build(BuildContext context) {
+    String newTaskTitle;
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -56,7 +55,10 @@ class AddTasks extends StatelessWidget {
                     color: Colors.lightBlueAccent,
                     onPressed: () {
                       // print(newTaskTitle);
-                      addTaskCallback(newTaskTitle);
+                      // addTaskCallback(newTaskTitle);
+
+                      Provider.of<TaskData>(context, listen: false)
+                          .addTask(newTaskTitle);
                       Navigator.of(context).pop();
                     },
                     child: Text(

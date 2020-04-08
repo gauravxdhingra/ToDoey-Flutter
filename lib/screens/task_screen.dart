@@ -80,13 +80,14 @@ class TasksScreen extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => AddTasks((newTaskTitle) {
-              // print(newTaskTitle);
-
-              // setState(() {
-              //   tasks.add(Task(name: newTaskTitle, isDone: false));
-              // });
-            }),
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTasks(),
+              ),
+            ),
           );
         },
         child: Icon(
