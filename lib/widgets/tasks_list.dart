@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TasksList extends StatelessWidget {
+class TasksList extends StatefulWidget {
+  @override
+  _TasksListState createState() => _TasksListState();
+}
+
+class _TasksListState extends State<TasksList> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -14,41 +19,47 @@ class TasksList extends StatelessWidget {
   }
 }
 
-class Listtilewidget extends StatelessWidget {
+class Listtilewidget extends StatefulWidget {
   final String title;
 
   const Listtilewidget({this.title});
+
+  @override
+  _ListtilewidgetState createState() => _ListtilewidgetState();
+}
+
+class _ListtilewidgetState extends State<Listtilewidget> {
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 3),
       child: ListTile(
         title: Text(
-          '$title',
+          '${widget.title}',
           style: TextStyle(fontSize: 20),
         ),
-        trailing: TaskCheckBox(),
+        trailing: TaskCheckBox(isChecked),
       ),
     );
   }
 }
 
-class TaskCheckBox extends StatefulWidget {
-  @override
-  _TaskCheckBoxState createState() => _TaskCheckBoxState();
-}
+class TaskCheckBox extends StatelessWidget {
+  TaskCheckBox(this.ischecked);
 
-class _TaskCheckBoxState extends State<TaskCheckBox> {
-  bool ischecked = false;
+  final bool ischecked;
+
   @override
   Widget build(BuildContext context) {
     return Checkbox(
       value: ischecked,
       activeColor: Colors.lightBlueAccent,
       onChanged: (newValue) {
-        setState(() {
-          ischecked = newValue;
-        });
+        // setState(() {
+        //   ischecked = newValue;
+        // });
       },
     );
   }
