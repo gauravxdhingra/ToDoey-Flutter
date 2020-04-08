@@ -23,6 +23,9 @@ class TasksList extends StatelessWidget {
               taskData.updateTask(taskData.tasks[i]);
               // });
             },
+            longPressCallBack: () {
+              taskData.deleteTask(taskData.tasks[i]);
+            },
           );
         },
         itemCount: taskData.tasks.length,
@@ -35,11 +38,13 @@ class Listtilewidget extends StatelessWidget {
   final String taskTitle;
   final bool isChecked;
   final Function checkboxCallBack;
+  final Function longPressCallBack;
 
   const Listtilewidget({
     this.taskTitle,
     this.isChecked,
     this.checkboxCallBack,
+    this.longPressCallBack,
   });
 
   // void checkboxCallback
@@ -49,6 +54,7 @@ class Listtilewidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 3),
       child: ListTile(
+        onLongPress: longPressCallBack,
         title: Text(
           '$taskTitle',
           style: TextStyle(
