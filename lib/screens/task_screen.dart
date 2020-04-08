@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/taks_data.dart';
 import 'package:todoey/screens/add_tasks.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 import 'package:todoey/models/tasks.dart';
@@ -9,12 +11,6 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy Milk'),
-    Task(name: 'Buy Bread'),
-    Task(name: 'Buy Biscuits')
-  ];
-
   Widget buildBottomSheet(BuildContext context) {
     return Container();
   }
@@ -58,7 +54,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     ),
                   ),
                   Text(
-                    '${tasks.length} Tasks',
+                    '${Provider.of<TaskData>(context).tasks.length} Tasks',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -80,7 +76,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topRight: Radius.circular(40),
                   ),
                 ),
-                child: TasksList(tasks),
+                child: TasksList(Provider.of<TaskData>(context).tasks),
               ),
             ),
           ],
@@ -93,9 +89,10 @@ class _TasksScreenState extends State<TasksScreen> {
             builder: (context) => AddTasks((newTaskTitle) {
               // print(newTaskTitle);
 
-              setState(() {
-                tasks.add(Task(name: newTaskTitle, isDone: false));
-              });
+              // setState(() {
+              //   tasks.add(Task(name: newTaskTitle, isDone: false));
+              // });
+              
             }),
           );
         },
