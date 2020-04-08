@@ -3,14 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todoey/models/taks_data.dart';
 import 'package:todoey/screens/add_tasks.dart';
 import 'package:todoey/widgets/tasks_list.dart';
-import 'package:todoey/models/tasks.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
+class TasksScreen extends StatelessWidget {
   Widget buildBottomSheet(BuildContext context) {
     return Container();
   }
@@ -76,7 +70,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topRight: Radius.circular(40),
                   ),
                 ),
-                child: TasksList(Provider.of<TaskData>(context).tasks),
+                child: TasksList(),
               ),
             ),
           ],
@@ -92,7 +86,6 @@ class _TasksScreenState extends State<TasksScreen> {
               // setState(() {
               //   tasks.add(Task(name: newTaskTitle, isDone: false));
               // });
-              
             }),
           );
         },

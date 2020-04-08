@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/taks_data.dart';
 
-import 'package:todoey/models/tasks.dart';
-
-class TasksList extends StatefulWidget {
-
-final List<Task> tasks;
-
-  const TasksList(this.tasks) ;
-
-  @override
-  _TasksListState createState() => _TasksListState();
-}
-
-class _TasksListState extends State<TasksList> {
+class TasksList extends StatelessWidget {
   // List<Task> tasks = [
   //   Task(name: 'Buy Milk'),
   //   Task(name: 'Buy Bread'),
@@ -21,19 +11,21 @@ class _TasksListState extends State<TasksList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, i) {
-        return Listtilewidget(
-          taskTitle: widget.tasks[i].name,
-          isChecked:  widget.tasks[i].isDone,
-          checkboxCallBack: (checkboxstate) {
-            setState(() {
-               widget.tasks[i].toggleDone();
-            });
-          },
-        );
-      },
-      itemCount:  widget.tasks.length,
+    return Consumer<TaskData>(
+      builder: (context, taskData, child) => ListView.builder(
+        itemBuilder: (context, i) {
+          return Listtilewidget(
+            taskTitle: taskData.tasks[i].name,
+            isChecked: taskData.tasks[i].isDone,
+            checkboxCallBack: (checkboxstate) {
+              // setState(() {
+              taskData.tasks[i].toggleDone();
+              // });
+            },
+          );
+        },
+        itemCount: taskData.tasks.length,
+      ),
     );
   }
 }
